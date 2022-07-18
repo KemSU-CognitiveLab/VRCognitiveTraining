@@ -1,0 +1,3 @@
+[submodule "Plugins/VRExperimentsBase"]
+	path = Plugins/VRExperimentsBase
+	url = https://github.com/GoldNotch/VRExperimentsBase.git
