@@ -6,6 +6,26 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "CognitiveTrainingUtils.generated.h"
 
+UCLASS(BlueprintType, Blueprintable)
+class USymbolEncoding : public UObject
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(BlueprintReadWrite)
+	FString Symbol = TEXT("");
+	UPROPERTY(BlueprintReadWrite)
+	TArray<FColor> Colors;
+};
+
+UCLASS(BlueprintType, Blueprintable)
+class UColorObject : public UObject
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(BlueprintReadWrite)
+	FColor Color;
+};
+
 /**
  * 
  */
@@ -14,7 +34,9 @@ class UCognitiveTrainingUtils : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	UFUNCTION(BlueprintCallable, Category = "Room01")
-	static TArray<FString> BreakWordIntoSpells(const FString& word, bool allow_dublicates = false);
+	static TArray<FString> BreakWordIntoCharacters(const FString& word, bool allow_dublicates = false);
 	UFUNCTION(BlueprintCallable, Category = "Room01")
-	static TArray<FString> GenerateEncoding(const TArray<FString>& spells);
+	static TArray<int> RandomSample(int SetLength, int SampleLength);
+	UFUNCTION(BlueprintCallable, Category = "Room01")
+	static TMap<FString, FString> GenerateEncoding(const FString& password, int desired_colors_count_per_symbol = 0);
 };

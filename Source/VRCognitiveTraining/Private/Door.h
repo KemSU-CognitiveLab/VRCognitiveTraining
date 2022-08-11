@@ -18,14 +18,14 @@ public:
 	ADoor(const FObjectInitializer& ObjectInitializer);
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadonly)
-	class UBoxComponent* Box;
-	UPROPERTY(EditAnywhere, BlueprintReadonly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
+	class UBoxComponent* BoxCollision;
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	class UStaticMeshComponent* Mesh;
 	UPROPERTY(EditAnywhere, BlueprintReadwrite)
 	FName LevelToLoad;
-	UPROPERTY(EditAnywhere, BlueprintReadonly)
-	class UWidgetComponent* UI;
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
+	class UWidgetComponent* TextUI;
 
 	UFUNCTION(BlueprintCallable)
 	void Unlock();

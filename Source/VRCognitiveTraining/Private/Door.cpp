@@ -11,22 +11,23 @@
 ADoor::ADoor(const FObjectInitializer& ObjectInitializer) :
 	Super(ObjectInitializer)
 {
-	Box = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
-	RootComponent = Box;
-	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(RootComponent);
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorMesh"));
+	RootComponent = Mesh;
+	BoxCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
+	BoxCollision->SetupAttachment(RootComponent);
 	static ConstructorHelpers::FClassFinder<UUserWidget> UI_DoorFinder(TEXT("/Game/UI/UI_Door"));
 	DoorUIClass = UI_DoorFinder.Class;
-	UI = CreateDefaultSubobject<UWidgetComponent>(TEXT("UI"));
-	UI->SetupAttachment(RootComponent);
-	UI->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	TextUI = CreateDefaultSubobject<UWidgetComponent>(TEXT("TextUI"));
+	TextUI->SetupAttachment(RootComponent);
+	TextUI->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	TextUI->SetWidgetClass(DoorUIClass);
+	TextUI->SetDrawSize(FVector2D(200.0f, 100.0f));
+	TextUI->SetVisibility(false);
 }
 
 void ADoor::BeginPlay()
 {
 	Super::BeginPlay();
-	UI->SetWidgetClass(DoorUIClass);
-	UI->SetDrawSize(FVector2D(200.0f, 100.0f));
 }
 
 void ADoor::Unlock()
@@ -34,8 +35,9 @@ void ADoor::Unlock()
 	if (bIsLocked)
 	{
 		bIsLocked = false;
-		auto textbox = Cast<UEditableText>(UI->GetWidget()->GetWidgetFromName(TEXT("text_DoorText")));
-		textbox->SetText(FText::FromString(TEXT("Click: Open")));
+		auto textbox = Cast<UEditableText>(TextUI->GetWidget()->GetWidgetFromName(TEXT("text_DoorText")));
+		if (IsValid(textbox))
+			textbox->SetText(FText::FromString(TEXT("Click: Open")));
 	}
 }
 
@@ -44,7 +46,7 @@ void ADoor::Lock()
 	if (!bIsLocked)
 	{
 		bIsLocked = true;
-		auto textbox = Cast<UEditableText>(UI->GetWidget()->GetWidgetFromName(TEXT("text_DoorText")));
+		auto textbox = Cast<UEditableText>(TextUI->GetWidget()->GetWidgetFromName(TEXT("text_DoorText")));
 		textbox->SetText(FText::FromString(TEXT("Closed")));
 	}
 }
@@ -59,10 +61,10 @@ void ADoor::OnPressedByTrigger(const FHitResult& hitResult)
 
 void ADoor::BeginOverlapByController()
 {
-	UI->SetVisibility(true);
+	TextUI->SetVisibility(true);
 }
 
 void ADoor::EndOverlapByController()
 {
-	UI->SetVisibility(false);
+	TextUI->SetVisibility(false);
 }

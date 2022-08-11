@@ -8,6 +8,16 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTraining, Log, All);
 
+USTRUCT(BlueprintType)
+struct FTaskStatistic
+{
+	GENERATED_BODY()
+	UPROPERTY()
+	float FullGameplayTime = 0.0f;
+	UPROPERTY()
+	int AttemptsCount = 0;
+};
+
 /**
  * 
  */
@@ -21,6 +31,8 @@ public:
 	virtual void StartTask(float timer);
 	UFUNCTION(BlueprintCallable, Category = "Training")
 	virtual void FinishTask(int fail_code = 0, const FString& reason = TEXT(""));
+	UFUNCTION(BlueprintCallable, Category = "Training")
+	FORCEINLINE FTaskStatistic GetStatistic() const { return statistic; }
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnTaskStarted();
@@ -35,6 +47,6 @@ protected:
 	float RestOfTime = 0.0f;
 	bool bTaskStarted = false;
 	bool bUseTimer = false;
-	float GameplayTime = 0.0f;
+	FTaskStatistic statistic;
 	
 };

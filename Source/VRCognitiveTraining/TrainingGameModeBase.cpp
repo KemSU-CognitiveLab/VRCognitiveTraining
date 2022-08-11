@@ -16,14 +16,19 @@ void ATrainingGameModeBase::Tick(float DeltaTime)
 			FinishTask(false, TEXT("Time is out"));
 	}
 	if (bExecutionStarted)
-		GameplayTime += DeltaTime;
+		statistic.FullGameplayTime += DeltaTime;
 }
 
 void ATrainingGameModeBase::StartTask(float timer)
 {
+	if (!bExecutionStarted)
+	{
+		statistic = FTaskStatistic();
+	}
 	if (!bTaskStarted) 
 	{
 		bTaskStarted = true;
+		statistic.AttemptsCount++;
 		if (timer > 0.0f)
 		{
 			bUseTimer = true;
@@ -33,10 +38,6 @@ void ATrainingGameModeBase::StartTask(float timer)
 		OnTaskStarted();
 	}
 	else UE_LOG(LogTraining, Error, TEXT("Try to start not finished task"));
-	if (!bExecutionStarted)
-	{
-		GameplayTime = 0.0f;
-	}
 }
 
 void ATrainingGameModeBase::FinishTask(int fail_code, const FString& reason)
