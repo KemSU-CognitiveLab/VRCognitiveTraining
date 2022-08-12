@@ -52,26 +52,34 @@ TMap<FString, FString> UCognitiveTrainingUtils::GenerateEncoding(const FString& 
 	auto symbols = BreakWordIntoCharacters(password);
 	ShuffleArray(symbols);
 
-	int min_colors_count_per_symbol = 0;
-	while (symbols.Num() > combinations_count[min_colors_count_per_symbol])
+	int min_colors_count_per_symbol = 1;
+	while (symbols.Num() > combinations_count[min_colors_count_per_symbol - 1])
 		min_colors_count_per_symbol++;
 
 	int colors_count_per_symbol = FMath::Max(desired_colors_count_per_symbol, min_colors_count_per_symbol);
-	UE_LOG(LogTemp, Display, TEXT("%i"), colors_count_per_symbol);
-	TArray<FString> used_color_chooses;
-	for (auto _char : symbols)
+	
+	if (colors_count_per_symbol > 1) 
 	{
-		FString coding_colors;
-		do {
-			coding_colors.Empty(7);
-			auto choose = RandomSample(7, colors_count_per_symbol + 1);
-			for (auto i : choose)
-				coding_colors.AppendChar(colors[i]);
-			UE_LOG(LogTemp, Display, TEXT("%s"), *coding_colors);
+		TArray<FString> used_color_chooses;
+		for (auto _char : symbols)
+		{
+			FString coding_colors;
+			do {
+				coding_colors.Empty(7);
+				auto choose = RandomSample(7, colors_count_per_symbol);
+				for (auto i : choose)
+					coding_colors.AppendChar(colors[i]);
+			} while (used_color_chooses.Contains(coding_colors));
+			used_color_chooses.Add(coding_colors);
+			encoding.Add(_char, coding_colors);
 		}
-		while (used_color_chooses.Contains(coding_colors));
-		used_color_chooses.Add(coding_colors);
-		encoding.Add(_char, coding_colors);
+	}
+	else
+	{
+		TArray<TCHAR> shuffled_colors(colors, 7);
+		ShuffleArray(shuffled_colors);
+		for (int i = 0; i < symbols.Num(); ++i) 
+			encoding.Add(symbols[i], FString().AppendChar(shuffled_colors[i]));
 	}
 	return encoding;
 }
