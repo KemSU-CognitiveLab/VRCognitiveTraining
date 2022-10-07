@@ -34,7 +34,7 @@ public:
 
 	//------------ AInteractableActor interface ------------
 	virtual void OnPressedByTrigger(const FHitResult& hitResult) override;
-	virtual void BeginOverlapByController() override;
+	virtual void BeginOverlapByController(const FHitResult& hitResult) override;
 	virtual void EndOverlapByController() override;
 	//------------ AInteractableActor interface ------------
 
