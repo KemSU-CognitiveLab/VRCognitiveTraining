@@ -59,7 +59,7 @@ void ADoor::OnPressedByTrigger(const FHitResult& hitResult)
 	}
 }
 
-void ADoor::BeginOverlapByController()
+void ADoor::BeginOverlapByController(const FHitResult& hitResult)
 {
 	TextUI->SetVisibility(true);
 }
