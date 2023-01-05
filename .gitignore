@@ -75,3 +75,9 @@ DerivedDataCache/*
 
 #SRanipal plugin because it must be unzip
 Plugins/SRanipal/*
+Content/EntranceDoor.uasset
+Content/Infromant.uasset
+Content/Room01/Room1.umap
+Content/Room02/Buttons/ButtonBallRight.uasset
+Content/Room02/Room2.umap
+Content/Room03/Room3.umap
