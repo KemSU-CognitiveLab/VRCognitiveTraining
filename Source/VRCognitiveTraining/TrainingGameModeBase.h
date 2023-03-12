@@ -13,7 +13,7 @@ struct FTaskStatistic
 {
 	GENERATED_BODY()
 	UPROPERTY()
-	float FullGameplayTime = 0.0f;
+	float FullGameplayTime = 0.0f; // Time to solve room
 	UPROPERTY()
 	int AttemptsCount = 0;
 };
