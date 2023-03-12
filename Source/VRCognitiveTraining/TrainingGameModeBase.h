@@ -12,10 +12,12 @@ USTRUCT(BlueprintType)
 struct FTaskStatistic
 {
 	GENERATED_BODY()
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	float FullGameplayTime = 0.0f; // Time to solve room
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	int AttemptsCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
+	float RestOfTime = 0.0f;
 };
 
 /**
@@ -29,6 +31,8 @@ class VRCOGNITIVETRAINING_API ATrainingGameModeBase : public AVRGameModeBase
 public:
 	UFUNCTION(BlueprintCallable, Category="Training")
 	virtual void StartTask(float timer);
+	UFUNCTION(BLueprintCallable, Category = "Training")
+	void FailAttempt();
 	UFUNCTION(BlueprintCallable, Category = "Training")
 	virtual void FinishTask(int fail_code = 0, const FString& reason = TEXT(""));
 	UFUNCTION(BlueprintCallable, Category = "Training")
@@ -44,7 +48,6 @@ public:
 	bool bExecutionStarted = false;
 
 protected:
-	float RestOfTime = 0.0f;
 	bool bTaskStarted = false;
 	bool bUseTimer = false;
 	FTaskStatistic statistic;
