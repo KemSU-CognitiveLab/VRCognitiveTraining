@@ -48,7 +48,7 @@ TMap<FString, FString> UCognitiveTrainingUtils::GenerateEncoding(const FString& 
 {
 	TMap<FString, FString> encoding;
 	const TCHAR* colors = TEXT("ROYGCBP");
-	const int combinations_count[] = {7, 42, 210, 840, 2520, 5040, 5040};//C(^k)(_n) * k! where k is colors_count and n = 7 becauses 7 colors in total
+	const int combinations_count[] = { 7, 42, 210, 840, 2520, 5040, 5040 };//C(^k)(_n) * k! where k is colors_count and n = 7 becauses 7 colors in total
 	auto symbols = BreakWordIntoCharacters(password);
 	ShuffleArray(symbols);
 
@@ -57,8 +57,8 @@ TMap<FString, FString> UCognitiveTrainingUtils::GenerateEncoding(const FString& 
 		min_colors_count_per_symbol++;
 
 	int colors_count_per_symbol = FMath::Max(desired_colors_count_per_symbol, min_colors_count_per_symbol);
-	
-	if (colors_count_per_symbol > 1) 
+
+	if (colors_count_per_symbol > 1)
 	{
 		TArray<FString> used_color_chooses;
 		for (auto _char : symbols)
@@ -78,7 +78,7 @@ TMap<FString, FString> UCognitiveTrainingUtils::GenerateEncoding(const FString& 
 	{
 		TArray<TCHAR> shuffled_colors(colors, 7);
 		ShuffleArray(shuffled_colors);
-		for (int i = 0; i < symbols.Num(); ++i) 
+		for (int i = 0; i < symbols.Num(); ++i)
 			encoding.Add(symbols[i], FString().AppendChar(shuffled_colors[i]));
 	}
 	return encoding;

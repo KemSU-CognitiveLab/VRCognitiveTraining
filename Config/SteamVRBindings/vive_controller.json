@@ -58,6 +58,28 @@
 							"output": "/actions/main/in/Walking"
 						}
 					}
+				},
+				{
+					"mode": "button",
+					"path": "/user/hand/right/input/grip",
+					"inputs":
+					{
+						"click":
+						{
+							"output": "/actions/main/in/RGrip"
+						}
+					}
+				},
+				{
+					"mode": "button",
+					"path": "/user/hand/left/input/grip",
+					"inputs":
+					{
+						"click":
+						{
+							"output": "/actions/main/in/LGrip"
+						}
+					}
 				}
 			],
 			"poses": [
@@ -93,5 +115,5 @@
 			]
 		}
 	},
-	"description": "VRCognitiveTraining-18319896"
+	"description": "VRCognitiveTraining-17735300"
 }

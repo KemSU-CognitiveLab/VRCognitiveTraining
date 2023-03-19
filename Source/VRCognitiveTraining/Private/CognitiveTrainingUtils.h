@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Engine/TextureRenderTarget2D.h"
 #include "CognitiveTrainingUtils.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)

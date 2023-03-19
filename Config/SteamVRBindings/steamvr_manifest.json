@@ -160,6 +160,14 @@
 			"type": "boolean"
 		},
 		{
+			"name": "/actions/main/in/RGrip",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/LGrip",
+			"type": "boolean"
+		},
+		{
 			"name": "/actions/main/in/CameraMove_RightLeft axis",
 			"type": "vector1"
 		},
@@ -411,6 +419,8 @@
 			"/actions/main/in/RTrigger": "RTrigger",
 			"/actions/main/in/LTrigger": "LTrigger",
 			"/actions/main/in/Walking": "Walking",
+			"/actions/main/in/RGrip": "RGrip",
+			"/actions/main/in/LGrip": "LGrip",
 			"/actions/main/in/CameraMove_RightLeft axis": "CameraMove_RightLeft",
 			"/actions/main/in/CameraMove_UpDown axis": "CameraMove_UpDown",
 			"/actions/main": "Main Game Actions"
