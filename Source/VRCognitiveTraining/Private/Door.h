@@ -31,6 +31,8 @@ public:
 	void Unlock();
 	UFUNCTION(BlueprintCallable)
 	void Lock();
+	UFUNCTION(BlueprintCallable)
+		FORCEINLINE bool IsLocked() const { return bIsLocked; }
 
 	//------------ AInteractableActor interface ------------
 	virtual void OnPressedByTrigger(const FHitResult& hitResult) override;

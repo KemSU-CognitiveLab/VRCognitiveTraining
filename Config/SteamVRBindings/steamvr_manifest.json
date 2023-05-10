@@ -148,11 +148,7 @@
 			"requirement": "optional"
 		},
 		{
-			"name": "/actions/main/in/RTrigger",
-			"type": "boolean"
-		},
-		{
-			"name": "/actions/main/in/LTrigger",
+			"name": "/actions/main/in/RController_Trigger",
 			"type": "boolean"
 		},
 		{
@@ -160,11 +156,15 @@
 			"type": "boolean"
 		},
 		{
-			"name": "/actions/main/in/RGrip",
+			"name": "/actions/main/in/RController_Grip",
 			"type": "boolean"
 		},
 		{
-			"name": "/actions/main/in/LGrip",
+			"name": "/actions/main/in/DragObject_MoveNear",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/DragObject_MoveFar",
 			"type": "boolean"
 		},
 		{
@@ -416,11 +416,11 @@
 			"/actions/main/out/vibrateleft": "Haptic (Left)",
 			"/actions/main/out/vibrateright": "Haptic (Right)",
 			"/actions/main/in/open_console": "Open Console",
-			"/actions/main/in/RTrigger": "RTrigger",
-			"/actions/main/in/LTrigger": "LTrigger",
+			"/actions/main/in/RController_Trigger": "RController_Trigger",
 			"/actions/main/in/Walking": "Walking",
-			"/actions/main/in/RGrip": "RGrip",
-			"/actions/main/in/LGrip": "LGrip",
+			"/actions/main/in/RController_Grip": "RController_Grip",
+			"/actions/main/in/DragObject_MoveNear": "DragObject_MoveNear",
+			"/actions/main/in/DragObject_MoveFar": "DragObject_MoveFar",
 			"/actions/main/in/CameraMove_RightLeft axis": "CameraMove_RightLeft",
 			"/actions/main/in/CameraMove_UpDown axis": "CameraMove_UpDown",
 			"/actions/main": "Main Game Actions"

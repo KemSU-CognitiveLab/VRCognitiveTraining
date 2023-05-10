@@ -8,16 +8,19 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTraining, Log, All);
 
-USTRUCT(BlueprintType)
-struct FTaskStatistic
+UCLASS(BlueprintType)
+class UTaskStatistic : public UObject
 {
 	GENERATED_BODY()
+public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	float FullGameplayTime = 0.0f; // Time to solve room
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	int AttemptsCount = 0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	float RestOfTime = 0.0f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
+	FString Name;
 };
 
 /**
@@ -33,10 +36,10 @@ public:
 	virtual void StartTask(float timer);
 	UFUNCTION(BLueprintCallable, Category = "Training")
 	void FailAttempt();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnFailAttempt_BP();
 	UFUNCTION(BlueprintCallable, Category = "Training")
 	virtual void FinishTask(int fail_code = 0, const FString& reason = TEXT(""));
-	UFUNCTION(BlueprintCallable, Category = "Training")
-	FORCEINLINE FTaskStatistic GetStatistic() const { return statistic; }
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnTaskStarted();
@@ -46,10 +49,11 @@ public:
 	void OnTaskSucceed();
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	bool bExecutionStarted = false;
-
+	UPROPERTY(EditAnywhere, BlueprintReadonly)
+	UTaskStatistic* Statistic;
 protected:
 	bool bTaskStarted = false;
 	bool bUseTimer = false;
-	FTaskStatistic statistic;
+	
 	
 };

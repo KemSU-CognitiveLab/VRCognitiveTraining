@@ -53,7 +53,8 @@ void ADoor::Lock()
 
 void ADoor::OnPressedByTrigger(const FHitResult& hitResult)
 {
-	if (!bIsLocked)
+	Super::OnPressedByTrigger(hitResult);
+	if (!bIsLocked && !LevelToLoad.IsNone())
 	{
 		UGameplayStatics::OpenLevel(GetWorld(), LevelToLoad);
 	}

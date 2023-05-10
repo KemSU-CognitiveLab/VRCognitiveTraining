@@ -9,23 +9,23 @@
 			"sources": [
 				{
 					"mode": "trigger",
-					"path": "/user/hand/right/input/trigger",
-					"inputs":
-					{
-						"click":
-						{
-							"output": "/actions/main/in/RTrigger"
-						}
-					}
-				},
-				{
-					"mode": "trigger",
 					"path": "/user/hand/left/input/trigger",
 					"inputs":
 					{
 						"click":
 						{
-							"output": "/actions/main/in/LTrigger"
+							"output": "/actions/main/in/RController_Trigger"
+						}
+					}
+				},
+				{
+					"mode": "trigger",
+					"path": "/user/hand/right/input/trigger",
+					"inputs":
+					{
+						"click":
+						{
+							"output": "/actions/main/in/RController_Trigger"
 						}
 					}
 				},
@@ -38,7 +38,7 @@
 					},
 					"inputs":
 					{
-						"north":
+						"west":
 						{
 							"output": "/actions/main/in/Walking"
 						}
@@ -53,20 +53,9 @@
 					},
 					"inputs":
 					{
-						"north":
+						"west":
 						{
 							"output": "/actions/main/in/Walking"
-						}
-					}
-				},
-				{
-					"mode": "button",
-					"path": "/user/hand/right/input/grip",
-					"inputs":
-					{
-						"click":
-						{
-							"output": "/actions/main/in/RGrip"
 						}
 					}
 				},
@@ -77,7 +66,78 @@
 					{
 						"click":
 						{
-							"output": "/actions/main/in/LGrip"
+							"output": "/actions/main/in/RController_Grip"
+						}
+					}
+				},
+				{
+					"mode": "button",
+					"path": "/user/hand/right/input/grip",
+					"inputs":
+					{
+						"click":
+						{
+							"output": "/actions/main/in/RController_Grip"
+						}
+					}
+				},
+				{
+					"mode": "dpad",
+					"path": "/user/hand/right/input/trackpad",
+					"parameters":
+					{
+						"sub_mode": "click"
+					},
+					"inputs":
+					{
+						"south":
+						{
+							"output": "/actions/main/in/DragObject_MoveNear"
+						}
+					}
+				},
+				{
+					"mode": "dpad",
+					"path": "/user/hand/left/input/trackpad",
+					"parameters":
+					{
+						"sub_mode": "click"
+					},
+					"inputs":
+					{
+						"south":
+						{
+							"output": "/actions/main/in/DragObject_MoveNear"
+						}
+					}
+				},
+				{
+					"mode": "dpad",
+					"path": "/user/hand/right/input/trackpad",
+					"parameters":
+					{
+						"sub_mode": "click"
+					},
+					"inputs":
+					{
+						"north":
+						{
+							"output": "/actions/main/in/DragObject_MoveFar"
+						}
+					}
+				},
+				{
+					"mode": "dpad",
+					"path": "/user/hand/left/input/trackpad",
+					"parameters":
+					{
+						"sub_mode": "click"
+					},
+					"inputs":
+					{
+						"north":
+						{
+							"output": "/actions/main/in/DragObject_MoveFar"
 						}
 					}
 				}
